@@ -208,19 +208,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\tamnh\\.nuget\\packages\\": {}
+    "C:\\Users\\bgh15\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\tamnh\\source\\repos\\BabyTracker\\BabyTracker.Api\\BabyTracker.Api.csproj",
+      "projectUniqueName": "C:\\Users\\bgh15\\source\\repos\\BTrack\\BabyTracker.Api\\BabyTracker.Api.csproj",
       "projectName": "BabyTracker.Api",
-      "projectPath": "C:\\Users\\tamnh\\source\\repos\\BabyTracker\\BabyTracker.Api\\BabyTracker.Api.csproj",
-      "packagesPath": "C:\\Users\\tamnh\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\tamnh\\source\\repos\\BabyTracker\\BabyTracker.Api\\obj\\",
+      "projectPath": "C:\\Users\\bgh15\\source\\repos\\BTrack\\BabyTracker.Api\\BabyTracker.Api.csproj",
+      "packagesPath": "C:\\Users\\bgh15\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\bgh15\\source\\repos\\BTrack\\BabyTracker.Api\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\tamnh\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\bgh15\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -257,8 +262,7 @@
           "net47",
           "net471",
           "net472",
-          "net48",
-          "net481"
+          "net48"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -270,7 +274,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
