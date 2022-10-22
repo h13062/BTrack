@@ -13,8 +13,8 @@ namespace BabyTracker.Core.Model
         public int Id { get; set; }
 
         [Column(TypeName = "varchar")]
-        public string BabySitterName { get; set; }
+        public string? BabySitterName { get; set; }
 
-        
+        //public BabyModel Baby { get; set; } //subject to change
     }
 }
