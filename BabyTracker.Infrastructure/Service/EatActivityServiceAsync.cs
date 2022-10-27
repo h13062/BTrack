@@ -1,4 +1,5 @@
-﻿using BabyTracker.Core.Contract.Service;
+﻿using BabyTracker.Core.Contract.Repository;
+using BabyTracker.Core.Contract.Service;
 using BabyTracker.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -8,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace BabyTracker.Infrastructure.Service
 {
+    
     public class EatActivityServiceAsync : IEatActivyServiceAsync
     {
+        private readonly IEatActivityRepositoryAsync eatActivyRepositoryAsync;
         public Task<int> AddEatAsync(EatActivityModel eat)
         {
             throw new NotImplementedException();

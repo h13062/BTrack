@@ -1,4 +1,5 @@
-﻿using BabyTracker.Core.Contract.Service;
+﻿using BabyTracker.Core.Contract.Repository;
+using BabyTracker.Core.Contract.Service;
 using BabyTracker.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,7 @@ namespace BabyTracker.Infrastructure.Service
 {
     public class SleepActivityServiceAsync : ISleepActivityServiceAsync
     {
+        private readonly ISleepActivityRepositoryAsync sleepActivityRepositoyryAsync;
         public Task<int> AddSleepAsync(SleepActivityModel sleep)
         {
             throw new NotImplementedException();
