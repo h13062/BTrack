@@ -1,5 +1,6 @@
 ﻿using BabyTracker.Core.Contract.Repository;
 using BabyTracker.Core.Contract.Service;
+using BabyTracker.Core.Entity;
 using BabyTracker.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -12,19 +13,44 @@ namespace BabyTracker.Infrastructure.Service
     public class PlayActivityServiceAsync : IPlayActivtyServiceAsync
     {
         private readonly IPlayActivityRepositoryAsync playActivtyRepositoryAsync;
-        public Task<int> AddPlayAsync(PlayActivityModel play)
+        public PlayActivityServiceAsync(IPlayActivityRepositoryAsync playActivtyRepositoryAsync)
         {
-            throw new NotImplementedException();
+              this.playActivtyRepositoryAsync = playActivtyRepositoryAsync;
+        }
+        public async Task<int> AddPlayAsync(PlayActivityModel play)
+        {
+            PlayActivity p = new PlayActivity();
+            p.Id = play.Id;
+            p.Day = play.Day;  
+            p.PlayStart=play.PlayStart;
+            p.PlayEnd=play.PlayEnd;
+            return await playActivtyRepositoryAsync.InsertAsync(p);
         }
 
-        public Task<int?> DeleteByIdAsync(int id)
+        public async Task<int?> DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await playActivtyRepositoryAsync.DeleteAsync(id);
         }
 
-        public Task<IEnumerable<PlayActivityModel>> GetAllAsync()
+        public async Task<IEnumerable<PlayActivityModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var collection = await playActivtyRepositoryAsync.GetAllAsync();
+
+            if (collection != null)
+            {
+                List<PlayActivityModel> result = new List<PlayActivityModel>();
+                foreach (var item in collection)
+                {
+                    PlayActivityModel model = new PlayActivityModel();
+                    model.Id = item.Id;
+                    model.Day = item.Day;
+                    model.PlayStart = item.PlayStart;
+                    model.PlayEnd = item.PlayEnd;
+                    result.Add(model);
+                }
+                return result;
+            }
+            return null;
         }
 
         public Task<PlayActivityModel> GetByIdAsync(int id)
@@ -32,9 +58,14 @@ namespace BabyTracker.Infrastructure.Service
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdatePlayAsync(PlayActivityModel play)
+        public async Task<int> UpdatePlayAsync(PlayActivityModel play)
         {
-            throw new NotImplementedException();
+            PlayActivity p = new PlayActivity();
+            p.Id = play.Id;
+            p.Day = play.Day;
+            p.PlayStart = play.PlayStart;
+            p.PlayEnd = play.PlayEnd;
+            return await playActivtyRepositoryAsync.UpdateAsync(p);
         }
     }
 }
