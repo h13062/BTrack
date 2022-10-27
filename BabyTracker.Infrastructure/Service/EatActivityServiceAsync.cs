@@ -10,7 +10,7 @@ namespace BabyTracker.Infrastructure.Service
 {
     public class EatActivityServiceAsync : IEatActivyServiceAsync
     {
-        public Task<int> AddEatAsync(EatActivityModel sleep)
+        public Task<int> AddEatAsync(EatActivityModel eat)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace BabyTracker.Infrastructure.Service
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateEatAsync(EatActivityModel sleep)
+        public Task<int> UpdateEatAsync(EatActivityModel eat)
         {
             throw new NotImplementedException();
         }

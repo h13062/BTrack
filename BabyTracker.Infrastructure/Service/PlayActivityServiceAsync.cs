@@ -10,7 +10,7 @@ namespace BabyTracker.Infrastructure.Service
 {
     public class PlayActivityServiceAsync : IPlayActivtyServiceAsync
     {
-        public Task<int> AddPlayAsync(PlayActivityModel sleep)
+        public Task<int> AddPlayAsync(PlayActivityModel play)
         {
             throw new NotImplementedException();
         }
@@ -30,7 +30,7 @@ namespace BabyTracker.Infrastructure.Service
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdatePlayAsync(PlayActivityModel sleep)
+        public Task<int> UpdatePlayAsync(PlayActivityModel play)
         {
             throw new NotImplementedException();
         }
