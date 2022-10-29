@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BabyTracker.Infrastructure.Repository
 {
-    public class EatActivityRepositoryAsync : BaseRepository<EatActivity>, IEatActivityRepositoryAsync;
+    public class EatActivityRepositoryAsync : BaseRepository<EatActivity>, IEatActivityRepositoryAsync
     {
         public EatActivityRepositoryAsync(BabyTrackerDbContext db) : base(db)
         {
