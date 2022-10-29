@@ -10,10 +10,10 @@ namespace BabyTracker.Core.Contract.Service
     public interface IBabySitterServiceAsync
     {
         Task<IEnumerable<BabySitterModel>> GetAllAsync();
-        Task<int> AddBabyAsync(BabySitterModel baby);
+        Task<int> AddBabyAsync(BabySitterModel babysit);
         Task<BabySitterModel> GetByIdAsync(int id);
         Task<BabySitterModel> GetByNameAsync(string name);
-        Task<int> UpdateBabyAsync(BabySitterModel baby);
+        Task<int> UpdateBabyAsync(BabySitterModel babysit);
         Task<int?> DeleteByIdAsync(int id);
     }
 }

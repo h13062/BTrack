@@ -1,4 +1,6 @@
-﻿using BabyTracker.Core.Contract.Service;
+﻿using BabyTracker.Core.Contract.Repository;
+using BabyTracker.Core.Contract.Service;
+using BabyTracker.Core.Entity;
 using BabyTracker.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -10,24 +12,65 @@ namespace BabyTracker.Infrastructure.Service
 {
     public class BabyServiceAsync : IBabyServiceAsync
     {
-        public Task<int> AddBabyAsync(BabyModel baby)
+        private readonly IBabyRepositoryAsync babyRepositoryAsync;
+        public BabyServiceAsync(IBabyRepositoryAsync babe)
         {
-            throw new NotImplementedException();
+            this.babyRepositoryAsync = babe;
+        }
+        public async Task<int> AddBabyAsync(BabyModel baby)
+        {
+            Baby b = new Baby();
+            b.Id = baby.Id;
+            b.Name = baby.Name; 
+            b.Gender = baby.Gender;
+            b.DateOfBirth = baby.DateOfBirth;
+            b.Weight =  baby.Weight;
+            return await babyRepositoryAsync.InsertAsync(b);
         }
 
-        public Task<int?> DeleteByIdAsync(int id)
+        public async Task<int?> DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await babyRepositoryAsync.DeleteAsync(id);   
         }
 
-        public Task<IEnumerable<BabyModel>> GetAllAsync()
+        public async Task<IEnumerable<BabyModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var collection = await babyRepositoryAsync.GetAllAsync();
+            if (collection != null)
+            {
+                List<BabyModel> result = new List<BabyModel>();
+                foreach (var item in collection)
+                {
+                    BabyModel model = new BabyModel();
+                    model.Id = item.Id;
+                    model.Name= item.Name;
+                    model.Gender = item.Gender;
+                    model.DateOfBirth = item.DateOfBirth;
+                    model.Weight = item.Weight;
+
+                    result.Add(model);
+                }
+                return result;
+            }
+            return null;
+
         }
 
-        public Task<BabyModel> GetByIdAsync(int id)
+        public async Task<BabyModel> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var item = await babyRepositoryAsync.GetByIdAsync(id);
+            if (item != null)
+            {
+                BabyModel model = new BabyModel();
+                model.Id = item.Id;
+                model.Name = item.Name;
+                model.Gender = item.Gender;
+                model.DateOfBirth = item.DateOfBirth;
+                model.Weight = item.Weight;
+                return model;
+            }
+            return null;
+
         }
 
         public Task<BabyModel> GetByNameAsync(string name)
@@ -35,9 +78,15 @@ namespace BabyTracker.Infrastructure.Service
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateBabyAsync(BabyModel baby)
+        public async Task<int> UpdateBabyAsync(BabyModel baby)
         {
-            throw new NotImplementedException();
+            Baby b = new Baby();
+            b.Id = baby.Id;
+            b.Name = baby.Name;
+            b.Gender = baby.Gender;
+            b.DateOfBirth = baby.DateOfBirth;
+            b.Weight = baby.Weight;
+            return await babyRepositoryAsync.UpdateAsync(b);
         }
     }
 }

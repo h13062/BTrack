@@ -1,4 +1,6 @@
-﻿using BabyTracker.Core.Contract.Service;
+﻿using BabyTracker.Core.Contract.Repository;
+using BabyTracker.Core.Contract.Service;
+using BabyTracker.Core.Entity;
 using BabyTracker.Core.Model;
 using System;
 using System.Collections.Generic;
@@ -10,24 +12,54 @@ namespace BabyTracker.Infrastructure.Service
 {
     public class BabySitterServiceAsync : IBabySitterServiceAsync
     {
-        public Task<int> AddBabyAsync(BabySitterModel baby)
+        private readonly IBabySitterRepositoryAsync babysitterRepositoryAsync;
+        public BabySitterServiceAsync(IBabySitterRepositoryAsync babysit)
         {
-            throw new NotImplementedException();
+            this.babysitterRepositoryAsync = babysit;
         }
 
-        public Task<int?> DeleteByIdAsync(int id)
+        public async Task<int> AddBabyAsync(BabySitterModel babysit)
         {
-            throw new NotImplementedException();
+            BabySitter b = new BabySitter();
+            b.Id = babysit.Id;
+            b.BabySitterName = babysit.BabySitterName;
+            return await babysitterRepositoryAsync.InsertAsync(b);
         }
 
-        public Task<IEnumerable<BabySitterModel>> GetAllAsync()
+        public async Task<int?> DeleteByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await babysitterRepositoryAsync.DeleteAsync(id);
         }
 
-        public Task<BabySitterModel> GetByIdAsync(int id)
+        public async Task<IEnumerable<BabySitterModel>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            var collection = await babysitterRepositoryAsync.GetAllAsync();
+            if (collection != null)
+            {
+                List<BabySitterModel> result = new List<BabySitterModel>();
+                foreach (var item in collection)
+                {
+                    BabySitterModel model = new BabySitterModel();
+                    model.Id = item.Id;
+                    model.BabySitterName = item.BabySitterName;
+                    result.Add(model);
+                }
+                return result;
+            }
+            return null;
+        }
+
+        public async Task<BabySitterModel> GetByIdAsync(int id)
+        {
+            var item = await babysitterRepositoryAsync.GetByIdAsync(id);
+            if (item != null)
+            {
+                BabySitterModel model = new BabySitterModel();
+                model.Id = item.Id;
+                model.BabySitterName = item.BabySitterName;
+                return model;
+            }
+            return null;
         }
 
         public Task<BabySitterModel> GetByNameAsync(string name)
@@ -35,9 +67,12 @@ namespace BabyTracker.Infrastructure.Service
             throw new NotImplementedException();
         }
 
-        public Task<int> UpdateBabyAsync(BabySitterModel baby)
+        public async Task<int> UpdateBabyAsync(BabySitterModel babysit)
         {
-            throw new NotImplementedException();
+            BabySitter b = new BabySitter();
+            b.Id = babysit.Id;
+            b.BabySitterName = babysit.BabySitterName;
+            return await babysitterRepositoryAsync.UpdateAsync(b);
         }
     }
 }
